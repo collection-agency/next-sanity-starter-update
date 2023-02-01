@@ -1,4 +1,4 @@
-import { getClient } from 'utils/sanity'
+import { sanityClient } from 'utils/sanity'
 import { configQuery } from 'utils/queries'
 import Head from 'next/head'
 import groq from 'groq'
@@ -11,7 +11,7 @@ const query = groq`
   *[_type == 'post' && slug.current == $slug][0]
 `
 
-const Post = ({ doc, config, preview }) => {
+const Post = ({ doc, config }) => {
   return (
     <Layout>
       <Seo config={config} doc={doc} />
@@ -26,13 +26,13 @@ const Post = ({ doc, config, preview }) => {
   )
 }
 
-export const getStaticProps = async ({ params, preview = false }) => {
-  const doc = await getClient(preview).fetch(query, {
+export const getStaticProps = async ({ params }) => {
+  const doc = await sanityClient.fetch(query, {
     slug: params.slug,
   });
-  const config = await getClient().fetch(configQuery)
+  const config = await sanityClient.fetch(configQuery)
   return {
-    props: { preview, doc, config }
+    props: { doc, config }
   }
 }
 

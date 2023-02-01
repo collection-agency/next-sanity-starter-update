@@ -1,6 +1,4 @@
-import React from 'react';
-
-const LinkRender = ({ children }) => <span>{children} 🌍</span>;
+import { LinkRender } from '../../components/LinkRender';
 
 export default {
   title: 'URL',

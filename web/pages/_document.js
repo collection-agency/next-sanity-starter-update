@@ -36,6 +36,8 @@ class MyDocument extends Document {
           `,
             }}
           />
+          {/* The Play CDN is designed for development purposes only */}
+          <script src="https://cdn.tailwindcss.com"></script>
         </Head>
         <body>
           <Main />

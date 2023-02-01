@@ -1,4 +1,4 @@
-import { getClient } from 'utils/sanity'
+import { sanityClient } from 'utils/sanity'
 import { configQuery } from 'utils/queries'
 import Head from 'next/head'
 import groq from 'groq'
@@ -23,8 +23,8 @@ const Landing = ({ docs, config }) => {
               {docs.map(doc => {
                 return (
                   <li key={doc._id}>
-                    <Link href={`/${doc.slug.current}`} >
-                      <a className='underline'>{doc.title}</a>
+                    <Link href={`/${doc.slug.current}`} className='underline'>
+                      {doc.title}
                     </Link>
                   </li>
                 )
@@ -38,8 +38,8 @@ const Landing = ({ docs, config }) => {
 }
 
 export const getStaticProps = async () => {
-  const docs = await getClient(true).fetch(query)
-  const config = await getClient().fetch(configQuery)
+  const docs = await sanityClient.fetch(query)
+  const config = await sanityClient.fetch(configQuery)
   return {
     props: { docs, config } // will be passed to the page component as props
   }

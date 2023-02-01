@@ -1,4 +1,3 @@
-import S from '@sanity/desk-tool/structure-builder'
 import {
   MdDashboard,
   MdSettings
@@ -12,7 +11,7 @@ const hiddenDocTypes = listItem =>
     'post'
   ].includes(listItem.getId())
 
-export default () =>
+export default (S) =>
   S.list()
     .title('Site')
     .items([
